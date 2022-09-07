@@ -17,3 +17,11 @@
   width: 300px;
   padding: 1rem;
 }
+.chart {
+  width: 85%;
+  margin: 0 auto;
+}
+.select_form {
+  width: 160px;
+  margin: 0 auto;
+}

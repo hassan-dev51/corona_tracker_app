@@ -13,7 +13,8 @@
   justify-content: space-around;
 }
 .card {
-  background-color: wheat;
+  background-color: rgba(0, 0, 179, 0.055);
+  border-radius: 15px;
   width: 300px;
   padding: 1rem;
 }
@@ -23,5 +24,13 @@
 }
 .select_form {
   width: 160px;
-  margin: 0 auto;
+  margin: 1rem auto;
+}
+@media screen and (max-width: 990px) {
+  .main_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
 }

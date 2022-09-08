@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 
 import { fetchData } from "../Api/Api";
-
+import Counter from "../Counter/Counter";
 const Card = () => {
   const [MainData, setMainData] = useState({});
-
+  const [countryName, setCountryName] = useState("");
   const getData = async () => {
     const resultData = await fetchData();
     setMainData(resultData);
   };
 
+  const handelChange = async (country) => {
+    const resultData = await fetchData(country);
+    setMainData(resultData);
+    setCountryName(country);
+  };
   useEffect(() => {
     getData();
+    handelChange();
   }, []);
 
   const { confirmed, deaths, recovered, lastUpdate } = MainData;
@@ -62,6 +68,11 @@ const Card = () => {
           <p>No of cases of covid</p>
         </div>
       </div>
+      <Counter
+        handelChange={handelChange}
+        MainData={MainData}
+        country={countryName}
+      />
     </>
   );
 };

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FormControl, NativeSelect } from "@mui/material";
 
 import { fetchCountries } from "../Api/Api";
+import Charts from "../Chart/Chart";
 
-const Counter = () => {
+const Counter = ({ handelChange, MainData, country }) => {
   const [countries, setCountries] = useState([]);
-  const [selected, setSelected] = useState("Global");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,22 +17,26 @@ const Counter = () => {
   }, [setCountries]);
 
   return (
-    <div className="select_form">
-      <FormControl>
-        <NativeSelect
-          variant="standard"
-          value={selected}
-          onChange={(e) => setSelected(e.target.value)}
-        >
-          <option value="global">Global</option>
-          {countries.map((country, ind) => (
-            <option key={ind} value={country}>
-              {country}
-            </option>
-          ))}
-        </NativeSelect>
-      </FormControl>
-    </div>
+    <>
+      <div className="select_form">
+        <FormControl>
+          <NativeSelect
+            variant="standard"
+            defaultValue=""
+            onChange={(e) => handelChange(e.target.value)}
+          >
+            <option value="">Global</option>
+            {countries.map((country, ind) => (
+              <option key={ind} value={country}>
+                {country}
+              </option>
+            ))}
+          </NativeSelect>
+        </FormControl>
+      </div>
+
+      <Charts MainData={MainData} country={country} />
+    </>
   );
 };
 
